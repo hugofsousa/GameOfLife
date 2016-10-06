@@ -3,8 +3,8 @@ ALUNOS:
 1 - Hugo Fagundes de Sousa
 	Matricula: 14/0082891
 
-2 - 
-	
+2 - Eduardo Araújo Cunha
+	Matrícula: 15/0033699	
 	
 3 - 
 	
