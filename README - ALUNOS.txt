@@ -6,8 +6,8 @@ ALUNOS:
 2 - Eduardo Araújo Cunha
 	Matrícula: 15/0033699	
 	
-3 - 
-	
+3 - Abner de Sousa Soares
+	Matrícula: 16/0108993
 
 4 - 
 	
