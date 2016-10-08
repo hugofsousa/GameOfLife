@@ -20,6 +20,6 @@ public class Cell {
     }
 	
     public void revive() {
-	this.alive = true;
+	    this.alive = true;
     }
 }

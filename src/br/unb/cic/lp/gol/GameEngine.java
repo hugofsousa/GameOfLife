@@ -155,13 +155,27 @@ public class GameEngine {
 	 */
 	private int numberOfNeighborhoodAliveCells(int i, int j) {
 		int alive = 0;
-		for (int a = i - 1; a <= i + 1; a++) {
-			for (int b = j - 1; b <= j + 1; b++) {
-				if (validPosition(a, b)  && (!(a==i && b == j)) && cells[a][b].isAlive()) {
-					alive++;
+		for (int line = i - 1; line <= i + 1; line++) {
+            for (int column = j - 1; column <= j + 1; column++) {
+                int x = line;
+                int y = column;
+                if (line == -1) {
+					x = height - 1;
 				}
-			}
-		}
+                else if (line == height) {
+					x = 0;
+				}
+                if (column == -1) {
+					y = width - 1;
+				}
+                else if (column == width) {
+					y = 0;
+				}
+                if (validPosition(x, y) && (!(line == i && column == j)) && (cells[x][y].isAlive())) {
+                    alive++;
+                }
+            }
+        }
 		return alive;
 	}
 
