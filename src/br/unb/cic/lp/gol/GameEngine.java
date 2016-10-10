@@ -37,13 +37,17 @@ public class GameEngine {
 
 		cells = new Cell[height][width];
 
+		generateCell(cells);
+		
+		this.statistics = statistics;
+	}
+
+	public void generateCell(Cell[][] cells){
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				cells[i][j] = new Cell();
 			}
 		}
-		
-		this.statistics = statistics;
 	}
 
 	/**
@@ -226,7 +230,7 @@ public class GameEngine {
 	/**
 	 * Verifica se tem um historico para que possa ser executado a funcão de UNDO(Return generations)
      */
-	public boolean hasHistory(){
-		return historyCells.size() > 1;
+	public int historySize(){
+		return historyCells.size();
 	}
 }

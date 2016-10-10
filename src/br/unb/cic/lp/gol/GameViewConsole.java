@@ -8,7 +8,7 @@ import java.util.Scanner;
  * 
  * @author rbonifacio
  */
-public class GameView {
+public class GameViewConsole {
 	private static final String LINE = "+-----+";
 	private static final String DEAD_CELL = "|     |";
 	private static final String ALIVE_CELL = "|  o  |";
@@ -25,7 +25,7 @@ public class GameView {
 	/**
 	 * Construtor da classe GameBoard
 	 */
-	public GameView(GameController controller, GameEngine engine) {
+	public GameViewConsole(GameController controller, GameEngine engine) {
 		this.controller = controller;
 		this.engine = engine;
 	}
@@ -56,7 +56,7 @@ public class GameView {
 			System.out.println("Select one of the options: \n \n"); 
 			System.out.println("[1] Make a cell alive");
 			System.out.println("[2] Next generation");
-			if(engine.hasHistory()) System.out.println("[3] Return generations");
+			if(engine.historySize() > 1) System.out.println("[3] Return generations");
 			System.out.println("[4] Halt");
 		
 			System.out.print("\n \n Option: ");
@@ -98,10 +98,10 @@ public class GameView {
 		Scanner s = new Scanner(System.in);
 
 		do {
-			System.out.print("\n Quantity of generations to return (1 - 10): " );
+			System.out.print("\n Quantity of generations to return (1 - " + engine.historySize()-1 + "): " );
 
 			quantity = s.nextInt();
-		}while(quantity < 0 && quantity > 10);
+		}while(quantity < 0 && quantity > engine.historySize()-1);
 
 		controller.returnGenerations(quantity);
 	}
@@ -123,7 +123,7 @@ public class GameView {
 		else if (option.equals("2")) {
 			return NEXT_GENERATION;
 		}
-		else if (option.equals("3")) {
+		else if (option.equals("3") && engine.historySize() > 1) {
 			return RETURN_GENERATIONS;
 		}
 		else if (option.equals("4")) {
