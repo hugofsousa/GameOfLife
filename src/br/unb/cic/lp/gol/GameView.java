@@ -16,7 +16,8 @@ public class GameView {
 	private static final int INVALID_OPTION = 0;
 	private static final int MAKE_CELL_ALIVE = 1;
 	private static final int NEXT_GENERATION = 2;
-	private static final int HALT = 3; 
+	private static final int RETURN_GENERATIONS = 3;
+	private static final int HALT = 4;
 
 	private GameEngine engine;
 	private GameController controller;
@@ -55,7 +56,8 @@ public class GameView {
 			System.out.println("Select one of the options: \n \n"); 
 			System.out.println("[1] Make a cell alive");
 			System.out.println("[2] Next generation");
-			System.out.println("[3] Halt");
+			if(engine.hasHistory()) System.out.println("[3] Return generations");
+			System.out.println("[4] Halt");
 		
 			System.out.print("\n \n Option: ");
 			
@@ -65,6 +67,7 @@ public class GameView {
 		switch(option) {
 			case MAKE_CELL_ALIVE : makeCellAlive(); break;
 			case NEXT_GENERATION : nextGeneration(); break;
+			case RETURN_GENERATIONS : returnGenerations(); break;
 			case HALT : halt();
 		}
 	}
@@ -89,7 +92,20 @@ public class GameView {
 	private void nextGeneration() {
 		controller.nextGeneration();
 	}
-	
+
+	private void returnGenerations() {
+		int quantity;
+		Scanner s = new Scanner(System.in);
+
+		do {
+			System.out.print("\n Quantity of generations to return (1 - 10): " );
+
+			quantity = s.nextInt();
+		}while(quantity < 0 && quantity > 10);
+
+		controller.returnGenerations(quantity);
+	}
+
 	private void halt() {
 		controller.halt();
 	}
@@ -108,6 +124,9 @@ public class GameView {
 			return NEXT_GENERATION;
 		}
 		else if (option.equals("3")) {
+			return RETURN_GENERATIONS;
+		}
+		else if (option.equals("4")) {
 			return HALT;
 		}
 		else return INVALID_OPTION;

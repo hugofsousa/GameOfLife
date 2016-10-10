@@ -60,5 +60,10 @@ public class GameController {
 		engine.nextGeneration();
 		board.update();
 	}
+
+	public void returnGenerations(int quantity) {
+		engine.returnGenerations(quantity);
+		board.update();
+	}
 	
 }

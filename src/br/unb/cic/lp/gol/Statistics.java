@@ -43,4 +43,12 @@ public class Statistics {
 		System.out.println("=================================");
 	}
 
+	public Statistics clone(){
+		Statistics s = new Statistics();
+
+		s.revivedCells = this.revivedCells;
+		s.killedCells = this.killedCells;
+
+		return s;
+	}
 }

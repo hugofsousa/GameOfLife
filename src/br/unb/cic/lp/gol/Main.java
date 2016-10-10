@@ -7,7 +7,7 @@ public class Main {
 		
 		Statistics statistics = new Statistics();
 
-		GameEngine engine = new GameEngine(10, 10, statistics);	
+		GameEngine engine = new GameEngine(10, 10, statistics);
 		
 		GameView board = new GameView(controller, engine);
 		

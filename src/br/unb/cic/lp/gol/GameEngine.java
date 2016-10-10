@@ -22,13 +22,14 @@ public class GameEngine {
 	private Cell[][] cells;
 	private Statistics statistics;
 
+	private List<Cell[][]> historyCells = new ArrayList<>();
+	private List<Statistics> historyStatistics = new ArrayList<>();
+
 	/**
 	 * Construtor da classe Environment.
-	 * 
-	 * @param height
+	 *  @param height
 	 *            dimensao vertical do ambiente
 	 * @param width
-	 *            dimentsao horizontal do ambiente
 	 */
 	public GameEngine(int height, int width, Statistics statistics) {
 		this.height = height;
@@ -80,6 +81,24 @@ public class GameEngine {
 			cell.kill();
 			statistics.recordKill();
 		}
+
+		historyCells.add(cells.clone());
+		historyStatistics.add(statistics.clone());
+	}
+
+	/**
+	 * Retorna uma quantidade específica de gerações
+	 *
+	 * @param quantity quantidade de gerações à retornar
+     */
+	public void returnGenerations(int quantity){
+		for (int i = 0 ; i < quantity ; i++){
+			historyCells.remove(historyCells.size() - 1);
+			historyStatistics.remove(historyStatistics.size() - 1);
+		}
+
+		cells = historyCells.get(historyCells.size() - 1);
+		statistics = historyStatistics.get(historyStatistics.size() - 1);
 	}
 	
 	/**
@@ -202,5 +221,12 @@ public class GameEngine {
 
 	public void setWidth(int width) {
 		this.width = width;
+	}
+
+	/**
+	 * Verifica se tem um historico para que possa ser executado a funcão de UNDO(Return generations)
+     */
+	public boolean hasHistory(){
+		return historyCells.size() > 1;
 	}
 }
