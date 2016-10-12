@@ -1,6 +1,7 @@
 package br.unb.cic.lp.gol;
 
 import java.security.InvalidParameterException;
+import java.util.Timer;
 
 /**
  * Classe que atua como um controlador do 
@@ -57,8 +58,11 @@ public class GameController {
 	}
 	
 	public void nextGeneration() {
-		engine.nextGeneration();
-		board.update();
+		do {
+			engine.nextGeneration();
+			board.update();
+			statistics.display();
+		} while(board.auto == true);
 	}
-	
+
 }

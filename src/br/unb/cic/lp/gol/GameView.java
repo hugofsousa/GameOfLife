@@ -16,10 +16,13 @@ public class GameView {
 	private static final int INVALID_OPTION = 0;
 	private static final int MAKE_CELL_ALIVE = 1;
 	private static final int NEXT_GENERATION = 2;
-	private static final int HALT = 3; 
+	private static final int AUTO = 3;
+	private static final int HALT = 4;
+	public boolean auto = false;
 
 	private GameEngine engine;
 	private GameController controller;
+	private Statistics statistics;
 
 	/**
 	 * Construtor da classe GameBoard
@@ -27,6 +30,7 @@ public class GameView {
 	public GameView(GameController controller, GameEngine engine) {
 		this.controller = controller;
 		this.engine = engine;
+		this.auto = false;
 	}
 
 	/**
@@ -43,7 +47,17 @@ public class GameView {
 			System.out.println("   " + i);
 			printLine();
 		}
-		printOptions();
+		if (!this.auto) {
+			printOptions();
+		}	else {
+			try {
+				Thread.sleep(1000);
+				cls();
+				System.out.println("Para Interromper Pressione Ctrl + C\n");
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private void printOptions() {
@@ -55,7 +69,8 @@ public class GameView {
 			System.out.println("Select one of the options: \n \n"); 
 			System.out.println("[1] Make a cell alive");
 			System.out.println("[2] Next generation");
-			System.out.println("[3] Halt");
+			System.out.println("[3] Auto");
+			System.out.println("[4] Ver Estatística e Sair");
 		
 			System.out.print("\n \n Option: ");
 			
@@ -65,6 +80,7 @@ public class GameView {
 		switch(option) {
 			case MAKE_CELL_ALIVE : makeCellAlive(); break;
 			case NEXT_GENERATION : nextGeneration(); break;
+			case AUTO: this.auto = true; nextGeneration(); break;
 			case HALT : halt();
 		}
 	}
@@ -108,6 +124,9 @@ public class GameView {
 			return NEXT_GENERATION;
 		}
 		else if (option.equals("3")) {
+			return AUTO;
+		}
+		else if (option.equals("4")) {
 			return HALT;
 		}
 		else return INVALID_OPTION;
@@ -130,5 +149,11 @@ public class GameView {
 			System.out.print("   " + j + "   ");
 		}
 		System.out.print("\n");
+	}
+
+	public static void cls(){
+		for( int i = 0; i < 20; i++ ) {
+			System.out.println("");
+		}
 	}
 }
