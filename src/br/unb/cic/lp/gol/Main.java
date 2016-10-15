@@ -1,5 +1,7 @@
 package br.unb.cic.lp.gol;
 
+import br.unb.cic.lp.regras.Conway;
+
 public class Main {
 
 	public static void main(String args[]) {
@@ -7,7 +9,7 @@ public class Main {
 		
 		Statistics statistics = new Statistics();
 
-		GameEngine engine = new GameEngine(10, 10, statistics);	
+		GameEngine engine = new Conway(10, 10, statistics);
 		
 		GameView board = new GameView(controller, engine);
 		
