@@ -37,17 +37,13 @@ public class GameEngine {
 
 		cells = new Cell[height][width];
 
-		generateCell(cells);
-		
-		this.statistics = statistics;
-	}
-
-	public void generateCell(Cell[][] cells){
 		for (int i = 0; i < height; i++) {
 			for (int j = 0; j < width; j++) {
 				cells[i][j] = new Cell();
 			}
 		}
+		
+		this.statistics = statistics;
 	}
 
 	/**
@@ -86,8 +82,25 @@ public class GameEngine {
 			statistics.recordKill();
 		}
 
-		historyCells.add(cells.clone());
+		historyCells.add(cloneCells(cells));
 		historyStatistics.add(statistics.clone());
+	}
+
+	/**
+	 * Método para clonar a matriz de celulas
+	 * 
+	 * @param cells matriz que deve ser clonada
+	 */
+	public Cell[][] cloneCells(Cell[][] cells) {
+	    if (cells == null)
+	        return null;
+	    Cell[][] result = new Cell[height][width];
+	    for (int i = 0; i < cells.length; i++) {
+	    	for (int j = 0; j < cells.length; j++) {
+	        	result[i][j] = cells[i][j].clone();
+	    	}
+	    }
+	    return result;
 	}
 
 	/**

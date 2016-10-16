@@ -12,7 +12,7 @@ import java.security.InvalidParameterException;
 public class GameController {
 
 	private GameEngine engine;
-	private GameViewConsole board;
+	private GameView board;
 	private Statistics statistics;
 	
 	public GameEngine getEngine() {
@@ -23,11 +23,11 @@ public class GameController {
 		this.engine = engine;
 	}
 	
-	public GameViewConsole getBoard() {
+	public GameView getBoard() {
 		return board;
 	}
 	
-	public void setBoard(GameViewConsole board) {
+	public void setBoard(GameView board) {
 		this.board = board;
 	}
 	

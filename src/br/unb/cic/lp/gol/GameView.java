@@ -8,7 +8,7 @@ import java.util.Scanner;
  * 
  * @author rbonifacio
  */
-public class GameViewConsole {
+public class GameView {
 	private static final String LINE = "+-----+";
 	private static final String DEAD_CELL = "|     |";
 	private static final String ALIVE_CELL = "|  o  |";
@@ -25,7 +25,7 @@ public class GameViewConsole {
 	/**
 	 * Construtor da classe GameBoard
 	 */
-	public GameViewConsole(GameController controller, GameEngine engine) {
+	public GameView(GameController controller, GameEngine engine) {
 		this.controller = controller;
 		this.engine = engine;
 	}
@@ -98,7 +98,7 @@ public class GameViewConsole {
 		Scanner s = new Scanner(System.in);
 
 		do {
-			System.out.print("\n Quantity of generations to return (1 - " + engine.historySize()-1 + "): " );
+			System.out.print("\n Quantity of generations to return (1 - " + String.valueOf(engine.historySize()-1) + "): " );
 
 			quantity = s.nextInt();
 		}while(quantity < 0 && quantity > engine.historySize()-1);

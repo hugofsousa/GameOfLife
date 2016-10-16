@@ -22,4 +22,8 @@ public class Cell {
     public void revive() {
 	    this.alive = true;
     }
+
+    public Cell clone(){
+        return new Cell(this.alive);
+    }
 }
